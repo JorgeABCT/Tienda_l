@@ -5,12 +5,12 @@ h3{
     color: red;
 }
 
-nav a{
+/*nav a{
     text-decoration: none;
     background-color: white;
     color: red
 
-}
+}*/
 
 tr:nth-child(odd){
     background-color: grey;
@@ -22,12 +22,12 @@ tr:nth-child(even){
     color: red
 }
 
-nav a:hover{
+/*nav a:hover{
     text-decoration: none;
     background-color: white;
     color: blue;
     font-size: 16px;
-}
+}*/
 
 body{
     background-color: #FE4D3E;
@@ -36,12 +36,62 @@ body{
     font-family: sans-serif;
     padding: 80px /*superior*/ 20px /*inferior*/ 0px /*lados*/
 }
+
+.encabezado{
+    position: fixed;
+    background-color: #076AF0;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+}
+
+.navegacion{
+    display: flex;
+    justify-content: space-between;
+    max-width: 992px;
+    margin: 0 auto;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: white;
+}
+
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 40px;
+    line-height: 90px;
+}
+
+.nav-menu{
+    display: flex;
+    font-size: 18px;
+    line-height: 90px;
+    list-style: none;
+}
+
+.nav-menu-item{
+    margin: 0 10px;
+}
+
+.nav-menu-link{
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.nav-menu-link:hover{
+    background-color: #024070;
+    transition: 0.5s;
+}
+
 header{
     position: fixed;
     background: black;
     top: 0;
     left: 0;
-    height: 80px;
+    height: 100px;
     width: 100%;
 }
 
@@ -49,26 +99,30 @@ section{
     position: fixed;
     background: yellow;
     overflow-y: scroll;
-    top: 80px;
-    left: 20%;
-    width: 100%;
+    top: 100px;
+    left: 15%;
+    bottom: 20px;
+    right: 0;
 }
 
 aside{
     position: fixed;
     background: aquamarine;
-    top: 80px;
+    top: 100px;
     bottom: 0;
     left: 0;
-    width: 20%;
+    width: 15%;
 }
 
 footer{
     position: fixed;
-    background: black;
-    color: white;
-    top: 0;
+    background-color: white;
+    color: black;
     left: 0;
+    right: 0;
     bottom: 0;
-    height: 20px;
+    height: 45px;
 }
+
+/*Clases empiezan por un punto (*)  */
+

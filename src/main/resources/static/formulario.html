@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--Esta es mi primera pagina HTML-->
+<html>
+    <head>
+        <title>Audios PAG</title>
+        <meta charset="UTF-8"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header class="encabezado">
+            <nav class="navegacion">
+                <a href="index.html" class="logo nav-link">TechShop</a>
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a class="nav-link nav-menu-link" href="pagina7.html">&triangleleft; Atras</a></li>
+                    <li class="nav-menu-item"><a class="nav-link nav-menu-link" href="pagina2.html">Adelante &triangleright;</a></li>
+                    <li class="nav-menu-item"><a class="nav-link nav-menu-link" href="audio.html">Audio</a></li>
+                    <li class="nav-menu-item"><a class="nav-link nav-menu-link" href="video.html">Video</a></li>
+                    <li class="nav-menu-item"><a class="nav-link nav-menu-link" href="iframe.html">iFrame</a></li>
+                    <li class="nav-menu-item"><a class="nav-link nav-menu-link" href="formulario.html">Formulario</a></li>
+                </ul>
+            </nav>
+        </header>
+        <aside>
+            <h2>Uso de formulario</h2>
+            <p>Ejemplo de como capturar informacion</p>
+        </aside>
+        <section>
+            <h2> Formulario basico html </h2>
+            <article>
+                <h3>Su info</h3>
+                <figure> 
+                    <form action="/cliente/nuevo" method='post'>
+                        Nombre del cliente: 
+                        <input type="text" name="Nombre" value="" size="45" />
+                        <br><br><br>
+                        Direccion exacta: 
+                        <textarea name="Direccion" rows="4" cols="40">
+                        </textarea>
+                        <br><br><br>
+                        Su grado academico
+                        <select name="Grado">
+                            <option>Primaria</option>
+                            <option>Secundaria</option>
+                            <option>Universitario</option>
+                            <option>Posgrado</option>
+                            <option>Master</option>
+                        </select>
+                        <br><br><br>
+                        Pasatiempos:
+                        <br>
+                        Netflix <input type="checkbox" name="netflix" value="ON" />
+                        HBO <input type="checkbox" name="HBO" value="ON" />
+                        Disney <input type="checkbox" name="Disney" value="ON" />
+                        <br><br><br>
+                        Grupo de edad: <br> 
+                        Menor<input type="radio" name="edad" value="menor" />
+                        Joven<input type="radio" name="edad" value="joven" />
+                        Adulto<input type="radio" name="edad" value="adulto" />
+                        <br><br><br>
+                        Imagen de perfil: <br>
+                        <input type="file" name="perfil" />
+                        <br><br><br>
+                        <input type="submit" value="Enviar" name="Enviar" />
+                    </form>
+                    <br>
+                    <figcaption>
+                        No dar informacion sensible
+                    </figcaption>
+                </figure>
+            </article>
+        </section>
+        <footer>
+            Terminos y condiciones<br>Derechos reservados 2024 &COPY;
+        </footer>
+    </body>
+</html>
