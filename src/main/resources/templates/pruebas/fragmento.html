@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>TechShop</title>
+    </head>
+    <body>
+        <!-- 1 Sección para crear las tabs de las categorias... llamará a una ventana modal-->
+        <section th:fragment="tabsCategorias" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarCategoria">
+                            <i class="fas fa-plus"></i> [[#{categoria.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 Fragmento para agregar categoria, es la ventana modal -->
+        <section th:fragment="agregarCategoria">
+            <div id="agregarCategoria" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{categoria.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/categoria/guardar}" th:object="${categoria}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="descripcion">[[#{categoria.descripcion}]]</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{categoria.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen">[[#{categoria.rutaImagen}]]</label>
+                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Sección principal para mostrar la informaccion de la entidad categoria -->
+        <section th:fragment="listadoProductos">
+            <div class="row row-cols-4">
+                <div class="card" th:each="p : ${productos}">
+                    <figure>
+                        <img th:src="${p.rutaImagen}" height="200" alt="imagen"/>
+                        <figcaption>
+                            [[${p.precio}]] ([[${p.existencias}]])
+                        </figcaption>
+                    </figure>
+                    <div class="card-header">
+                        <h4>[[${p.descripcion}]]</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">[[${p.detalle}]]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>
