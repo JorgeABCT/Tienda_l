@@ -6,59 +6,22 @@
         <title>TechShop</title>
     </head>
     <body>
-        <!-- 1 Sección para crear las tabs de las categorias... llamará a una ventana modal-->
-        <section th:fragment="tabsCategorias" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarCategoria">
-                            <i class="fas fa-plus"></i> [[#{categoria.agregar}]]
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2 Fragmento para agregar categoria, es la ventana modal -->
-        <section th:fragment="agregarCategoria">
-            <div id="agregarCategoria" 
-                 class="modal fade" 
-                 tabindex="-1" 
-                 aria-labelledby="exampleModalLabel" 
-                 aria-hidden="true">
-                <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">[[#{categoria.agregar}]]</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div> 
-                        <form th:action="@{/categoria/guardar}" th:object="${categoria}"
-                              method="POST" class="was-validated" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="descripcion">[[#{categoria.descripcion}]]</label>
-                                    <input type="text" class="form-control" name="descripcion" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="activo">[[#{categoria.activo}]]</label>
-                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="imagen">[[#{categoria.rutaImagen}]]</label>
-                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
-                                    <img id="blah" src="#" alt="your image" height="200"/>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <!-- 1 Sección principal para mostrar la informaccion de las categorias -->
+        <section th:fragment="tabsCategorias" id="categorias">
+            <div class="row py-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           aria-current="page" 
+                           href="/pruebas/listado"
+                           >[[#{pruebas.todas}]]</a>
+                    </li>
+                    <li th:each="categoria : ${categorias}" class="nav-item">
+                        <a class="nav-link" 
+                           th:href="@{/pruebas/listado/}+${categoria.idCategoria}"
+                           >[[${categoria.descripcion}]]</a>
+                    </li>                    
+                </ul>
             </div>
         </section>
 

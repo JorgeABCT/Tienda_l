@@ -29,21 +29,30 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/pruebas")
 public class PruebasController {
-    
+
     @Autowired
     private CategoriaService categoriaService;
-    
-        @Autowired
+
+    @Autowired
     private ProductoService productoService;
-        
+
     @GetMapping("/listado")
-    public String listado(Model model){
-        var productos=productoService.getProductos(false);
-        var categorias=categoriaService.getCategorias(false);
+    public String listado(Model model) {
+        var productos = productoService.getProductos(false);
+        var categorias = categoriaService.getCategorias(false);
         model.addAttribute("productos", productos);
-        model.addAttribute("categorias", categorias);
         model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("categorias", categorias);
         return "/pruebas/listado";
     }
-    
+
+    @GetMapping("/listado/{idCategoria}")
+    public String listado(Model model, Categoria categoria) {
+        var productos = categoriaService.getCategoria(categoria).getProductos();
+        var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("productos", productos);
+        model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("categorias", categorias);
+        return "/pruebas/listado";
+    }
 }
