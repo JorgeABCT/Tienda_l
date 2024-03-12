@@ -48,11 +48,55 @@ public class PruebasController {
 
     @GetMapping("/listado/{idCategoria}")
     public String listado(Model model, Categoria categoria) {
+        categoria = categoriaService.getCategoria(categoria);
         var productos = categoriaService.getCategoria(categoria).getProductos();
         var categorias = categoriaService.getCategorias(false);
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         model.addAttribute("categorias", categorias);
         return "/pruebas/listado";
+    }
+    
+    @GetMapping("/listado2")
+    public String listado2(Model model, Categoria categoria) {
+        var productos = productoService.getProductos(false);
+        model.addAttribute("productos", productos);
+        return "/pruebas/listado2";
+    }
+    
+    @PostMapping("/query1")
+    public String consultaQuery1(
+            @RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup, 
+            Model model) {
+        var productos = productoService.meotodoQuery(precioInf, precioSup);
+        model.addAttribute("productos", productos);
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        return "/pruebas/listado2";
+    }
+    
+    @PostMapping("/query2")
+    public String consultaQuery2(
+            @RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup, 
+            Model model) {
+        var productos = productoService.meotodoJPQL(precioInf, precioSup);
+        model.addAttribute("productos", productos);
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        return "/pruebas/listado2";
+    }
+    
+    @PostMapping("/query3")
+    public String consultaQuery3(
+            @RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup, 
+            Model model) {
+        var productos = productoService.meotodoNativo(precioInf, precioSup);
+        model.addAttribute("productos", productos);
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        return "/pruebas/listado2";
     }
 }

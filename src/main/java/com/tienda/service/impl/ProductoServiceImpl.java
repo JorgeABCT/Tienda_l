@@ -47,4 +47,22 @@ public class ProductoServiceImpl implements ProductoService {
         productoDao.delete(producto);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> meotodoQuery(double precioInf, double precioSup) {
+        return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> meotodoJPQL(double precioInf, double precioSup) {
+        return productoDao.meotodoJPQL(precioInf, precioSup);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> meotodoNativo(double precioInf, double precioSup) {
+        return productoDao.meotodoNativo(precioInf, precioSup);
+    }
+
 }

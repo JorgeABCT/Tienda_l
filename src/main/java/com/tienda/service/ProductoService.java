@@ -24,4 +24,13 @@ public interface ProductoService {
     
     // Se elimina el producto que tiene el id pasado por parámetro
     public void delete(Producto producto);
+    
+    //Esta consulta ampliada utiliza metodo jQuery
+    public List<Producto> meotodoQuery(double precioInf, double precioSup);
+
+     //Esta consulta utiliza metodo lenguaje JPQL
+    public List<Producto> meotodoJPQL(double precioInf, double precioSup);
+    
+    //Esta consulta utiliza metodo lenguaje SQL
+    public List<Producto> meotodoNativo(double precioInf, double precioSup);
 }
