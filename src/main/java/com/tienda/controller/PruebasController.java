@@ -56,18 +56,18 @@ public class PruebasController {
         model.addAttribute("categorias", categorias);
         return "/pruebas/listado";
     }
-    
+
     @GetMapping("/listado2")
     public String listado2(Model model, Categoria categoria) {
         var productos = productoService.getProductos(false);
         model.addAttribute("productos", productos);
         return "/pruebas/listado2";
     }
-    
+
     @PostMapping("/query1")
     public String consultaQuery1(
             @RequestParam(value = "precioInf") double precioInf,
-            @RequestParam(value = "precioSup") double precioSup, 
+            @RequestParam(value = "precioSup") double precioSup,
             Model model) {
         var productos = productoService.meotodoQuery(precioInf, precioSup);
         model.addAttribute("productos", productos);
@@ -75,11 +75,11 @@ public class PruebasController {
         model.addAttribute("precioSup", precioSup);
         return "/pruebas/listado2";
     }
-    
+
     @PostMapping("/query2")
     public String consultaQuery2(
             @RequestParam(value = "precioInf") double precioInf,
-            @RequestParam(value = "precioSup") double precioSup, 
+            @RequestParam(value = "precioSup") double precioSup,
             Model model) {
         var productos = productoService.meotodoJPQL(precioInf, precioSup);
         model.addAttribute("productos", productos);
@@ -87,16 +87,73 @@ public class PruebasController {
         model.addAttribute("precioSup", precioSup);
         return "/pruebas/listado2";
     }
-    
+
     @PostMapping("/query3")
     public String consultaQuery3(
             @RequestParam(value = "precioInf") double precioInf,
-            @RequestParam(value = "precioSup") double precioSup, 
+            @RequestParam(value = "precioSup") double precioSup,
             Model model) {
         var productos = productoService.meotodoNativo(precioInf, precioSup);
         model.addAttribute("productos", productos);
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
         return "/pruebas/listado2";
+    }
+
+    @GetMapping("/listado3")
+    public String listado3(Model model, Categoria categoria) {
+        var productos = productoService.getProductos(false);
+        var categorias=categoriaService.getCategorias(true);
+        model.addAttribute("productos", productos);
+        model.addAttribute("categorias", categorias);
+        return "/pruebas/listado3";
+    }
+
+    @PostMapping("/buscar")
+    public String consultaBuscar(
+            @RequestParam(value = "buscar") String buscar,
+            Model model) {
+        var productos = productoService.buscarProducto(buscar);
+        var categorias=categoriaService.getCategorias(true);
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("productos", productos);
+        model.addAttribute("buscar", buscar);
+        return "/pruebas/listado3";
+    }
+
+    @PostMapping("/existencias")
+    public String consultaCantidad(
+            @RequestParam(value = "cantidad") int cantidad,
+            @RequestParam(value = "ordenASC", required=false) String ordenASC,
+            Model model) {
+        
+        boolean orden = false;
+        if (ordenASC!=(null) && ordenASC.equals("on")) {
+            orden = true;
+        }
+
+        var productos = productoService.buscarCantidadDESC(cantidad);
+        if (orden) {
+            productos.clear();
+            productos = productoService.buscarCantidadASC(cantidad);
+        }
+        var categorias=categoriaService.getCategorias(true);
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("productos", productos);
+        model.addAttribute("cantidad", cantidad);
+        model.addAttribute("ordenASC", orden);
+        return "/pruebas/listado3";
+    }
+
+    @PostMapping("/categorias")
+    public String consultaProductosPorCategoria(
+            @RequestParam(value = "idCategoria") int categoria,
+            Model model) {
+        var categorias=categoriaService.getCategorias(true);
+        var productos = productoService.buscarProductosPorCategoria(categoria);
+        model.addAttribute("productos", productos);
+        model.addAttribute("idCategoria", categoria);
+        model.addAttribute("categorias", categorias);
+        return "/pruebas/listado3";
     }
 }

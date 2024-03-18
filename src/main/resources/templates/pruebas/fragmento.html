@@ -99,7 +99,7 @@
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="col-md-4">
                     <form method="POST" th:action="@{/pruebas/query3}">
                         <div class="card">                            
@@ -125,9 +125,85 @@
                         </div>
                     </form>
                 </div>
+
+            </div> 
+        </section>
+
+        <!-- 4 Sección de filtros creados por Jorge Abarca Coto -->
+        <section th:fragment="filtrosPropios" class="bg-light">
+            <div class="row py-4">
+                <div class="col-md-4">
+                    <form method="POST" th:action="@{/pruebas/buscar}">
+                        <div class="card">                            
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="fechaBuscar">Escriba el nombre de un producto</label>
+                                    <input type="text" class="form-control" 
+                                           th:value="${buscar}"
+                                           th:name="buscar" required="true"/>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-check"></i> Buscar Producto por Nombre
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <form method="POST" th:action="@{/pruebas/existencias}">
+                        <div class="card">                            
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="fechaCantidad">Buscar Por Cantidad</label>
+                                    <input type="number" class="form-control" 
+                                           th:value="${cantidad}"
+                                           th:name="cantidad" required="true"/>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" th:checked="${ordenASC}" th:name="ordenASC"/>
+                                    <label class="form-check-label" for="ordenASC">
+                                        Orden Ascendente?
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-check"></i> Buscar Producto por Existencias
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <form method="POST" th:action="@{/pruebas/categorias}">
+                        <div class="card">                            
+                            <div class="card-body">
+                                <div class="mb-3">                            
+                                    <label for="categorias">Busque la categoria que quiere buscar</label>
+                                    <select class="form-select" aria-label="Default select example" th:value="${idCategoria}" th:name="idCategoria">
+                                        <option th:each="c : ${categorias}"
+                                                th:value="${c.idCategoria}"
+                                                th:text="${c.descripcion}"
+                                                th:selected="${c.idCategoria == idCategoria}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-check"></i> Buscar Producto por Categoria
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 
             </div> 
         </section> 
+
 
 
     </body>

@@ -33,4 +33,12 @@ public interface ProductoService {
     
     //Esta consulta utiliza metodo lenguaje SQL
     public List<Producto> meotodoNativo(double precioInf, double precioSup);
+    
+    public List<Producto> buscarProducto(String buscar);
+    
+    public List<Producto> buscarCantidadASC(int cantidad);
+    
+    public List<Producto> buscarCantidadDESC(int cantidad);
+    
+    public List<Producto> buscarProductosPorCategoria(int categoria);
 }

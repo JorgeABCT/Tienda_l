@@ -65,4 +65,27 @@ public class ProductoServiceImpl implements ProductoService {
         return productoDao.meotodoNativo(precioInf, precioSup);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> buscarProducto(String buscar) {
+        return productoDao.buscarProducto(buscar);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> buscarCantidadASC(int cantidad) {
+        return productoDao.buscarCantidadASC(cantidad);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> buscarCantidadDESC(int cantidad) {
+        return productoDao.buscarCantidadDESC(cantidad);
+    }
+
+    @Override
+    public List<Producto> buscarProductosPorCategoria(int categoria) {
+        return productoDao.buscarProductosPorCategoria(categoria);
+    }
+
 }
