@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -33,15 +34,16 @@ public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDet
     private HttpSession session;
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //Se busca el usuario
         Usuario usuario = usuarioDao.findByUsername(username);
         if (usuario == null) {
             throw new UsernameNotFoundException(username);
         }
-        //Si se encontro el usuario
+        //Si se encontro el usuario, se actualiza la foto de la variable de la session
         
-        session.removeAttribute("usuarioImagen");
+        session.removeAttribute("imagenUsuario");
         session.setAttribute("imagenUsuario", usuario.getRutaImagen());
         
         var roles =  new ArrayList<GrantedAuthority>();

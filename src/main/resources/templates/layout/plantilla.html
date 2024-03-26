@@ -58,8 +58,8 @@
 
                         <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                             <li class="nav-item text-white my-auto">
-                                <img th:href="@{${session.usuarioImagen}}" alt="imagen" height="40" class="rounded-circle"/>
-                                <span sec:authentication='name'>Doe</span>
+                                <img th:src="@{${session.imagenUsuario}}" alt="Imagen_Usuario" height="40" class="rounded-circle"/>
+                                <span sec:authentication='name'>Yorsh</span>
                             </li>
                             <li class="nav-item text-white my-auto">
                                 <form method='post' th:action='@{/logout}'>
@@ -69,9 +69,8 @@
                                 </form>
                             </li>
                         </ul>
-                            
-                            
-                            <!--
+
+                            <!-- Nose porque no sirve este codigo
                             <ul class='navbar-nav' sec:authorize='isAuthenticated()'>
                                 <li class='nav-item text-white my-auto'>
                                     <img th:href='@{${session.usuarioImagen}}'
