@@ -2,12 +2,12 @@
 <!--Esta es mi primera pagina HTML-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>TechShop</title>
+        <title>lapagina</title>
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
         
-        <section th:replace="~{carrito/fragmento :: listadoProductos}"/>
+        <section th:replace="~{categoria/fragmento :: listadoCarrito}"/>
         
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>
