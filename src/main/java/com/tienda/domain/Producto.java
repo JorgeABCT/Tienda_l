@@ -33,5 +33,19 @@ public class Producto implements Serializable{
     @ManyToOne
     @JoinColumn(name="id_categoria")
     private Categoria categoria;
+
+    public Producto() {
+    }
+
+    public Producto(long idProducto, String descripcion, String detalle, double precio, int existencias, String rutaImagen, boolean activo, Categoria categoria) {
+        this.idProducto = idProducto;
+        this.descripcion = descripcion;
+        this.detalle = detalle;
+        this.precio = precio;
+        this.existencias = existencias;
+        this.rutaImagen = rutaImagen;
+        this.activo = activo;
+        this.categoria = categoria;
+    }
     
 }

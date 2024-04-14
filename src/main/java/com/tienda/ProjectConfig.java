@@ -61,7 +61,6 @@ public class ProjectConfig implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http.authorizeHttpRequests((request) -> request
                 .requestMatchers("/", "/index",
                         "/carrito/**",
